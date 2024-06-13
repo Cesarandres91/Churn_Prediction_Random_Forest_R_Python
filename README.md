@@ -55,18 +55,12 @@ Code R:
 
 
 
-\`\`\`python
+```python
 def hola_mundo():
     print("¡Hola, mundo!")
 
 hola_mundo()
-\`\`\`
-
-También puedes usar bloques de código sin especificar un lenguaje:
-
-\`\`\`
-Aquí hay un bloque de código sin resaltar sintaxis.
-\`\`\`
+```
 
 
 df <- read.csv("C:/churn-analysis.csv", sep=";")
