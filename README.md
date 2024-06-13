@@ -50,24 +50,35 @@ En este caso el contexto lo explica, el objetivo es la Predicción de la fuga de
 2 - Comprensión de los datos.
 Para esta etapa se realizará un análisis exploratorio de los datos utilizando el software R. Se leerá el documento usando read.csv() y luego para efectos prácticos en mi experiencia voy a desactivar la notación científica para entender mejor los números y transformar los nombres de las columnas para que todos los puntos sean guiones bajos y poder facilitar su uso, y luego ejecutar la función str() que nos permita conocer la estructura interna de cada una de las variables.
 
-Code R:
-
-
-
-
-```python
-def hola_mundo():
-    print("¡Hola, mundo!")
-
-hola_mundo()
-```
-
-
+Podemos llevar a cabo esto con los siguientes códigos en R o en Python,
+```Code R
+# Leer el archivo CSV
 df <- read.csv("C:/churn-analysis.csv", sep=";")
-options(scipen=999)
-names(df) <- gsub('\\.','_',names(df))
-str(df)
 
+# Deshabilitar la notación científica en la salida
+options(scipen=999)
+
+# Renombrar las columnas reemplazando los puntos por guiones bajos
+names(df) <- gsub('\\.','_',names(df))
+
+# Mostrar la estructura del DataFrame
+str(df)
+```
+```Code python
+import pandas as pd
+
+# Leer el archivo CSV
+df = pd.read_csv("C:/churn-analysis.csv", sep=";")
+
+# Deshabilitar la notación científica en la salida
+pd.set_option('display.float_format', lambda x: '%.3f' % x)
+
+# Renombrar las columnas reemplazando los puntos por guiones bajos
+df.columns = df.columns.str.replace('.', '_')
+
+# Mostrar la estructura del DataFrame
+print(df.info())
+```
 
 <!---
 Cesarandres91/Cesarandres91 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
