@@ -52,7 +52,7 @@ Para esta etapa se realizará un análisis exploratorio de los datos utilizando 
 
 Podemos llevar a cabo esto con los siguientes códigos en R o en Python,
 
-#Versión en R:
+### Versión en R:
 ```Code R
 # Leer el archivo CSV
 df <- read.csv("C:/churn-analysis.csv", sep=";")
@@ -66,7 +66,7 @@ names(df) <- gsub('\\.','_',names(df))
 # Mostrar la estructura del DataFrame
 str(df)
 ```
-#Versión en Python:
+### Versión en Python:
 ```Code python
 import pandas as pd
 
