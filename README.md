@@ -6,10 +6,9 @@
 - 💞️ I’m looking to collaborate on data quality proyects.
 - 📫 How to reach me https://www.linkedin.com/in/andreschile/
 
-#Predicción de la fuga de clientes en una empresa de telecomunicaciones
+# Predicción de la fuga de clientes en una empresa de telecomunicaciones
+Desarrollaremos un modelo predictivo utilizando el conjunto de datos "churn-analysis.csv", el cual proporciona información sobre los clientes que abandonaron la compañía.
 
-Contexto: Se proporciona el conjunto de datos churn-analysis.csv, el cual consiste en
-identicar a los clientes que fugaron de la compañía.
 Las descripciones de las columnas de la base de datos son:
 state: Region del usuario.
 area.code: Codigo de area.
@@ -32,7 +31,7 @@ total.intl.charge: Cantidad de costo internacionales.
 customer.service.calls: Cantidad de llamados a la mesa de ayuda
 churn: Fuga del cliente (True o False).
 
-##Desarrollo
+## Desarrollo
 Para la metodología de trabajo se usará como guía el modelo CRISP-DM que divide el proceso en fases: 
 1) Comprensión del negocio
 2) Comprensión de los datos
