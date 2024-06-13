@@ -1,4 +1,4 @@
-# Limpieza de Datos con R (Data Cleaning with R)
+# Data Science - Modelo de Clasificación con R y Python
 
 - 👋 Hi, I’m @Cesarandres91
 - 👀 I’m interested in data quality, data science and front end development
