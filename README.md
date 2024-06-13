@@ -1,9 +1,9 @@
 # Data Science - Modelo de Clasificación con R y Python
 
 - 👋 Hi, I’m @Cesarandres91
-- 👀 I’m interested in data quality, data science and front end development
+- 👀 I’m interested in data quality, data science and data governance.
 - 🌱 I’m currently learning data science.
-- 💞️ I’m looking to collaborate on data quality proyects.
+- 💞️ I’m looking to collaborate on data governance and data quality proyects.
 - 📫 How to reach me https://www.linkedin.com/in/andreschile/
 
 # Predicción de la fuga de clientes en una empresa de telecomunicaciones
