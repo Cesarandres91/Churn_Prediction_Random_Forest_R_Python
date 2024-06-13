@@ -32,7 +32,7 @@ total.intl.charge: Cantidad de costo internacionales.
 customer.service.calls: Cantidad de llamados a la mesa de ayuda
 churn: Fuga del cliente (True o False).
 
-Desarrollo
+##Desarrollo
 Para la metodología de trabajo se usará como guía el modelo CRISP-DM que divide el proceso en fases: 
 1) Comprensión del negocio
 2) Comprensión de los datos
@@ -44,15 +44,15 @@ Además, para el análisis se utilizará el lenguaje R en Rstudio.
 
 ![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/01d6ed26-bdd5-45cf-8e6f-41bec470aedf)
 
-### 1 - Comprensión del negocio.
+## 1 - Comprensión del negocio.
 En este caso el contexto lo explica, el objetivo es la Predicción de la fuga de clientes en una empresa de telecomunicaciones dado el conjunto de datos churn-analysis.csv. Por lo cual nuestra variable objetivo será “churn” (variable respuesta) la cual muestra la Fuga del cliente (True o False) y para esto se realizará un análisis exploratorio de los datos para mejorar la comprensión de ellos y poder aplicar las transformaciones necesarias para luego implementarun modelo de Random forest en función de diversas variables de entrada (variables explicativas). El árbol de decisión es una representación para clasificar nuevos ejemplos y el aprendizaje basado en este tipo de árboles son una de las técnicas más eficaces para la clasificación supervisada.
 
-### 2 - Comprensión de los datos.
+## 2 - Comprensión de los datos.
 Para esta etapa se realizará un análisis exploratorio de los datos utilizando el software R. Se leerá el documento usando read.csv() y luego para efectos prácticos en mi experiencia voy a desactivar la notación científica para entender mejor los números y transformar los nombres de las columnas para que todos los puntos sean guiones bajos y poder facilitar su uso, y luego ejecutar la función str() que nos permita conocer la estructura interna de cada una de las variables.
 
 Podemos llevar a cabo esto con los siguientes códigos en R o en Python,
 
-Versión en R:
+#Versión en R:
 ```Code R
 # Leer el archivo CSV
 df <- read.csv("C:/churn-analysis.csv", sep=";")
@@ -66,7 +66,7 @@ names(df) <- gsub('\\.','_',names(df))
 # Mostrar la estructura del DataFrame
 str(df)
 ```
-Versión en Python:
+#Versión en Python:
 ```Code python
 import pandas as pd
 
@@ -89,13 +89,13 @@ PD: Desactivar la notación científica hace que los números sean más fáciles
 Dado lo anterior ejecutaré las funciones glimpse() y skim(), que entregan información muy útil, la primera mostrando el tipo de variable, indicando si son continuas (numéricas) o categóricas (factor) y da información general muy parecida a str(), luego la función skim() obtenemos el número de missing (valores faltantes), numero de datos completos, min, max, media, desviación estándar, información de los cuartiles y una pequeña gráfica que nos da un primer acercamiento sobre la distribución de los datos.
 
 
-Versión en R:
+#Versión en R:
 ```Code R
 glimpse(df)
 skim(df)
 ```
 
-Versión en Python:
+#Versión en Python:
 ```Code python
 import pandas as pd
 from pandas_profiling import ProfileReport  
@@ -116,7 +116,7 @@ profile.to_notebook_iframe()
 
 Con skim obtenemos el número de missing (valores faltantes), numero de datos completos, media, desviación y información de los cuartiles.
 
-Primeras conclusiones:
+##Primeras conclusiones:
 - No hay valores nulos
 - La variable phone_number tiene 3.333 registros únicos (misma cantidad de registros existentes) por lo que data la distribución de las demás variables no aportaría mayor valor al estudio y puede ser eliminada.
 - Problemas con tipos de variables: state, area_code, , international_plan , voice_mail_plan y churn se comportan como variables del tipo factor y deben ser cambiadas.
@@ -124,7 +124,7 @@ Primeras conclusiones:
 
 Removeré la columna pone_number, luego transformaré las variables mencionadas anteriormente al tipo factor y procederé a graficar por separado las variables del tipo factor y las del tipo númerico.
 
-Versión en R:
+###Versión en R:
 ```Code R
 # Eliminar la columna 'phone_number' del DataFrame
 df$phone_number <- NULL
@@ -158,7 +158,7 @@ df %>%
   theme(axis.text=element_text(size=6)) # Ajustar el tamaño del texto en los ejes
 ```
 
-Versión en Python:
+###Versión en Python:
 ```Code python
 import pandas as pd
 import seaborn as sns
@@ -199,6 +199,87 @@ g.set_titles("{col_name}")
 g.set_xticklabels(rotation=45, ha='right', fontsize=6)
 plt.show()
 ```
+#Gráficas de distribución de variables del tipo factor
+![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/0aaafd85-8455-4e61-9d48-771eea995a09)
+
+Se puede ver que el area_code ampliamente mayoritario es el 415, la variable objetivo churn posee un desbalanceo alto hacia el valor “False”, la variable “international_plan” muestra un amplio dominio del “no”, la variable State tiene un valor máximo por sobre los 100 que se destaca sobre los demás valores, la variable voice_mail_plan muestra un amplio domino del “no”.
+
+#Gráficas de distribución de variables del tipo factor
+![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/44c24ae8-576b-41af-bdaf-c15267d0fa6f)
+
+Casi todas las variables muestran una distribución normal excepto customer_service_calls (Cantidad de llamados a la mesa de ayuda), number_vmail_messages (Cantidad de mensajes virtuales posee) y total_intl_calls (Cantidad de llamadas internacionales).
+Volvemos a realizar un skim() luego de la corrección del tipo de variables.
+
+![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/1bfe7ad8-4e1f-4086-b5dd-4d3550086690)
+
+Vemos que el mayor state que se repite es WV, el código de área más repetido es 415 con casi el 50% de los registros, el 90% (3010) no corresponde a plan internacional, el 72% de los registros (2411) no corresponde a vocie_mail_plan y que efectivamente la variable churn se encuentra desbalanceada 86% a False y 14% a True, dado que lo ideal es que la variable objetivo tenga una proporción parecida o tener un mínimo cercano de 80% y 20% para que el modelo no prediga por defecto siempre la misma opción más repetida y en este caso señalando “False” ya que el modelo sería inservible.
+
+##Analizaremos la Correlación de variables
+
+###Versión en R:
+```Code R
+# Identificar las columnas numéricas en el DataFrame
+numeric.var <- sapply(df, is.numeric)
+
+# Calcular la matriz de correlación solo para las columnas numéricas
+corr.matrix <- cor(df[, numeric.var])
+
+# Graficar la matriz de correlación usando corrplot
+corrplot(corr.matrix, main="\n\nGráfica de correlación para variables numéricas", method="number")
+```
+###Versión en Python:
+```Code Python
+# Identificar las columnas numéricas en el DataFrame
+numeric_var = df.select_dtypes(include=[np.number])
+
+# Calcular la matriz de correlación solo para las columnas numéricas
+corr_matrix = numeric_var.corr()
+
+# Graficar la matriz de correlación usando seaborn y matplotlib
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap='coolwarm', cbar=True)
+plt.title("\n\nGráfica de correlación para variables numéricas")
+plt.show()
+```
+
+![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/4e0ff8ef-83a9-48d8-8380-7ebd82ecddfd)
+
+Vemos que existen 4 correlaciones altas entre variables:
+o total_day_calls con total_day_minutes,
+o total_eve_charge con total_eve_minutes,
+o total_night_chargue con total_night_minutes
+o total_intl_chargue con con total_intl_minutes.
+
+Identificación de outliers,
+###Versión en R:
+```Code R
+# Seleccionar solo las columnas numéricas del DataFrame
+outliers <- df %>%
+  select_if(is.numeric) %>%
+  # Crear un diagrama de cajas y bigotes para cada variable numérica
+  boxplot(df, main = "Diagrama de cajas y bigotes - todas las variables",
+          outbg = "red", # Color de fondo para los outliers
+          whiskcol = "blue", # Color de los 'bigotes'
+          outpch = 25) # Tipo de punto para los outliers
+```
+###Versión en Python:
+```Code Python
+# Crear un diagrama de cajas y bigotes para cada variable numérica
+plt.figure(figsize=(12, 8))  # Establecer el tamaño de la figura
+sns.boxplot(data=df.select_dtypes(include=[np.number]),  # Seleccionar solo columnas numéricas
+            palette="cool")  # Especificar una paleta de colores
+            
+plt.title("Diagrama de cajas y bigotes - todas las variables")  # Añadir título a la figura
+plt.xticks(rotation=45)  # Rotar las etiquetas del eje x para mejor visualización
+plt.grid(True)  # Añadir cuadrícula para facilitar la lectura
+plt.show()  # Mostrar el gráfico
+```
+![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/5fa1c050-a724-4327-8db4-d8472307876a)
+
+En la gráfica se han marcado como triángulos rojos todos los outliers existentes de cada variable númerica y como se puede apreciar todas contienen datos outliers tanto sobre tercer cuartil como bajo el primer cuartil.
+
+## 3 - Preparación de los datos
+Dado la información anterior ahora se procederá a realizar las transformaciones necesarias sobre la data se pudo identificar al menos 3 tareas a realizar, se debe trabajar los outliers en las variables númericas, se debe suavizar el desbalanceo de la variable churn y se debe tomar la decisión si prescindir o no de las variables correlacionadas.
 
 <!---
 Cesarandres91/Cesarandres91 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
