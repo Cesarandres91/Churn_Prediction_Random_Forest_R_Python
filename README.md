@@ -12,26 +12,26 @@ Desarrollaremos un modelo predictivo utilizando el conjunto de datos "churn-anal
 Las descripciones de las columnas de la base de datos son:
 | Columna                   | Descripción                                        |
 |---------------------------|----------------------------------------------------|
-| `state`                   | Región del usuario.                                |
-| `area.code`               | Código de área.                                    |
-| `phone.number`            | Número telefónico.                                 |
-| `international.plan`      | Plan internacional (yes o no).                     |
-| `voice.mail.plan`         | Plan con correo de voz (yes o no).                 |
-| `number.vmail.messages`   | Cantidad de mensajes virtuales posee.              |
-| `total.day.minutes`       | Cantidad de minutos diarios.                       |
-| `total.day.calls`         | Cantidad de llamadas diarias.                      |
-| `total.day.charge`        | Cantidad del costo diario.                         |
-| `total.eve.minutes`       | Cantidad de minutos en la tarde.                   |
-| `total.eve.calls`         | Cantidad de llamadas en la tarde.                  |
-| `total.eve.charge`        | Cantidad de costo en la tarde.                     |
-| `total.night.minutes`     | Cantidad de minutos en la noche.                   |
-| `total.night.calls`       | Cantidad de llamadas en la noche.                  |
-| `total.night.charge`      | Cantidad de costo en la noche.                     |
-| `total.intl.minutes`      | Cantidad de minutos internacionales.               |
-| `total.intl.calls`        | Cantidad de llamadas internacionales.              |
-| `total.intl.charge`       | Cantidad de costo internacionales.                 |
-| `customer.service.calls`  | Cantidad de llamados a la mesa de ayuda.           |
-| `churn`                   | Fuga del cliente (True o False).                   |
+| `state`                   | 🌍 Región del usuario.                                |
+| `area.code`               | 📞 Código de área.                                    |
+| `phone.number`            | ☎️ Número telefónico.                                 |
+| `international.plan`      | 🌐 Plan internacional (yes o no).                     |
+| `voice.mail.plan`         | ✉️ Plan con correo de voz (yes o no).                 |
+| `number.vmail.messages`   | 💬 Cantidad de mensajes virtuales posee.              |
+| `total.day.minutes`       | ⏳ Cantidad de minutos diarios.                       |
+| `total.day.calls`         | 📲 Cantidad de llamadas diarias.                      |
+| `total.day.charge`        | 💵 Cantidad del costo diario.                         |
+| `total.eve.minutes`       | 🌆 Cantidad de minutos en la tarde.                   |
+| `total.eve.calls`         | 📞 Cantidad de llamadas en la tarde.                  |
+| `total.eve.charge`        | 💰 Cantidad de costo en la tarde.                     |
+| `total.night.minutes`     | 🌙 Cantidad de minutos en la noche.                   |
+| `total.night.calls`       | 📱 Cantidad de llamadas en la noche.                  |
+| `total.night.charge`      | 💤 Cantidad de costo en la noche.                     |
+| `total.intl.minutes`      | ✈️ Cantidad de minutos internacionales.               |
+| `total.intl.calls`        | 🌏 Cantidad de llamadas internacionales.              |
+| `total.intl.charge`       | 💸 Cantidad de costo internacionales.                 |
+| `customer.service.calls`  | 🛠️ Cantidad de llamados a la mesa de ayuda.           |
+| `churn`                   | 🔄 Fuga del cliente (True o False).                   |
 
 ## Desarrollo
 Para la metodología de trabajo se usará como guía el modelo CRISP-DM que divide el proceso en fases: 
