@@ -49,14 +49,15 @@ PD: Como metodología están tambien DataOps, TDSP, SEMMA o Agile Data Science, 
 - Agile Data Science se centra en la rapidez y adaptabilidad, utilizando principios ágiles para iteraciones rápidas y feedback continuo.
 - DataOps integra prácticas de DevOps en la gestión de datos, enfocándose en la automatización y la eficiencia operativa a lo largo de todo el ciclo de vida de los datos.
 
-  CRISP-DM
+  ### CRISP-DM
+  
 ![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/01d6ed26-bdd5-45cf-8e6f-41bec470aedf)
 
 ## 1 - Comprensión del negocio.
-En este caso el contexto lo explica, el objetivo es la Predicción de la fuga de clientes en una empresa de telecomunicaciones dado el conjunto de datos churn-analysis.csv. Por lo cual nuestra variable objetivo será “churn” (variable respuesta) la cual muestra la Fuga del cliente (True o False) y para esto se realizará un análisis exploratorio de los datos para mejorar la comprensión de ellos y poder aplicar las transformaciones necesarias para luego implementarun modelo de Random forest en función de diversas variables de entrada (variables explicativas). El árbol de decisión es una representación para clasificar nuevos ejemplos y el aprendizaje basado en este tipo de árboles son una de las técnicas más eficaces para la clasificación supervisada.
+En este caso, el objetivo es predecir la fuga de clientes en una empresa de telecomunicaciones utilizando el conjunto de datos churn-analysis.csv. La variable objetivo es "churn" (la variable de respuesta), que indica si un cliente se fuga (True) o no (False). Realizaremos un análisis exploratorio de los datos para comprender mejor el conjunto y aplicar las transformaciones necesarias. Luego, implementaremos un modelo de Random Forest utilizando diversas variables de entrada (variables explicativas). Los árboles de decisión son herramientas eficaces para clasificar nuevos ejemplos, y el aprendizaje basado en estos árboles es una de las técnicas más efectivas para la clasificación supervisada.
 
 ## 2 - Comprensión de los datos.
-Para esta etapa se realizará un análisis exploratorio de los datos utilizando el software R. Se leerá el documento usando read.csv() y luego para efectos prácticos en mi experiencia voy a desactivar la notación científica para entender mejor los números y transformar los nombres de las columnas para que todos los puntos sean guiones bajos y poder facilitar su uso, y luego ejecutar la función str() que nos permita conocer la estructura interna de cada una de las variables.
+Ahora realizaremos un análisis exploratorio de los datos (EDA). Primero, leeremos el archivo churn-analysis.csv usando la función read.csv(). Para facilitar la comprensión de los números, desactivaremos la notación científica. Además, transformaremos los nombres de las columnas reemplazando los puntos por guiones bajos, lo que facilitará su uso. Finalmente, ejecutaremos la función str() para conocer la estructura interna de cada una de las variables.
 
 Podemos llevar a cabo esto con los siguientes códigos en R o en Python,
 
@@ -130,7 +131,7 @@ Con skim obtenemos el número de missing (valores faltantes), numero de datos co
 - Problemas con tipos de variables: state, area_code, , international_plan , voice_mail_plan y churn se comportan como variables del tipo factor y deben ser cambiadas.
 - Viendo la información de los cuartiles variales como customer_service_calls podrían presentar valores outliers que afectarían la implementación correcta del modelo.
 
-Removeré la columna pone_number, luego transformaré las variables mencionadas anteriormente al tipo factor y procederé a graficar por separado las variables del tipo factor y las del tipo númerico.
+Removeré la columna phone_number, luego transformaré las variables mencionadas anteriormente al tipo factor y procederé a graficar por separado las variables del tipo factor y las del tipo númerico.
 
 ### Versión en R:
 ```Code R
@@ -294,7 +295,7 @@ a. **Tratamiento de Outliers en Variables Numéricas:**
    Los valores atípicos que excedan 1.5 veces el rango intercuartílico serán limitados. Específicamente, los valores por debajo del bigote inferior serán reemplazados por el percentil 5, y los valores por encima del bigote superior serán reemplazados por el percentil 95.
 
 b. **Suavizar el Desbalance de la Variable `churn`:**
-   Se aplicarán técnicas de balanceo de clases para mejorar la distribución de la variable objetivo `churn`, mejorando así la capacidad predictiva del modelo.
+   Aplicaré técnicas de balanceo de clases para mejorar la distribución de la variable objetivo `churn`, mejorando así la capacidad predictiva del modelo.
 
 c. **Análisis de Variables Correlacionadas:**
    Se evaluará la correlación entre variables para decidir si es necesario descartar algunas con el fin de reducir la multicolinealidad y mejorar la interpretación del modelo.
@@ -374,7 +375,7 @@ Si obtenemos nuevamente la gráfica vemos que los outliers ya no se encuentran.
 PD: Este enfoque es muy útil en análisis de datos para asegurar que los resultados no estén sesgados por valores atípicos extremos, y que el modelo de datos resultante sea más robusto y representativo del comportamiento "normal" esperado.
 
 ### b - Suavizar el Desbalance de la Variable
-Se utilizará la técnica de undersampling (inframuestreo) y over sampling (sobremuestreo) de manera conjunta con la ayuda de la libería ROSE y la función ovun.sample donde el método es “both” señalando que utiliza ambas técnicas, buscando el balance 50/50 de la variable churn.
+Para esto utilizaré la técnica de undersampling (inframuestreo) y over sampling (sobremuestreo) de manera conjunta con la ayuda de la libería ROSE y la función ovun.sample donde el método es “both” señalando que utiliza ambas técnicas, buscando el balance 50/50 de la variable churn.
 
 ### Versión en R:
 ```Code R
