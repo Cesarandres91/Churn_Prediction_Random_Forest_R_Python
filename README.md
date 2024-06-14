@@ -107,7 +107,7 @@ skim(df)
 ### Versión en Python:
 ```Code python
 import pandas as pd
-from pandas_profiling import ProfileReport  
+from ydata_profiling import ProfileReport
 
 print(df.info())
     print(df.describe(include='all'))
