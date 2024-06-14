@@ -34,15 +34,22 @@ Las descripciones de las columnas de la base de datos son:
 | `churn`                   | 🔄 Fuga del cliente (True o False).                   |
 
 ## Desarrollo
-Para la metodología de trabajo se usará como guía el modelo CRISP-DM que divide el proceso en fases: 
+Como metodología de trabajo utilizaré el modelo CRISP-DM (Cross-Industry Standard Process for Data Mining) que divide el proceso en fases: 
 1) Comprensión del negocio
 2) Comprensión de los datos
 3) Preparación de los datos
 4) Fase de Modelado
 5) Evaluación e Implementación.
 
-Además, para el análisis se utilizará el lenguaje R en Rstudio.
+Además, para el análisis utilizaré el lenguaje R y Python, en mi opinión R es más sencillo pero Python es mucho más versatil en caso de que se desee integrar con más funciones aparte de data science.
 
+PD: Como metodología están tambien DataOps, TDSP, SEMMA o Agile Data Science, cual elegir dependerá del contexto pero aquí dejo una breve descripción de cada uno:
+- CRISP-DM y SEMMA son más tradicionales y estructurados, con un fuerte enfoque en la preparación y modelado de datos.
+- TDSP es similar a CRISP-DM pero con un enfoque más colaborativo y específico para el ecosistema de Microsoft.
+- Agile Data Science se centra en la rapidez y adaptabilidad, utilizando principios ágiles para iteraciones rápidas y feedback continuo.
+- DataOps integra prácticas de DevOps en la gestión de datos, enfocándose en la automatización y la eficiencia operativa a lo largo de todo el ciclo de vida de los datos.
+
+  CRISP-DM
 ![image](https://github.com/Cesarandres91/DS_Data_cleansing_with_R/assets/102868086/01d6ed26-bdd5-45cf-8e6f-41bec470aedf)
 
 ## 1 - Comprensión del negocio.
