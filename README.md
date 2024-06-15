@@ -1,10 +1,12 @@
 # Data Science - Modelo de Clasificación con R y Python
 
-- 👋 Hi, I’m @Cesarandres91
-- 👀 I’m interested in data quality, data science and data governance.
-- 🌱 I’m currently learning data science.
-- 💞️ I’m looking to collaborate on data governance and data quality proyects.
-- 📫 How to reach me https://www.linkedin.com/in/andreschile/
+## Hi there 👋, I'm Cesar (@Cesarandres91)
+
+- 👀 I’m interested in data quality, data science, and data governance.
+- 🌱 I’m currently improving my skills in data science.
+- 💞️ I’m looking to collaborate on data governance, quality, science or cybersecurity projects.
+- 📫 How to reach me: [LinkedIn](https://www.linkedin.com/in/andreschile/)
+
 
 # Predicción de la fuga de clientes en una empresa de telecomunicaciones
 Desarrollaremos un modelo predictivo utilizando el conjunto de datos "churn-analysis.csv", el cual proporciona información sobre los clientes que abandonaron la compañía.
